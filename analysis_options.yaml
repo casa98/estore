@@ -1,0 +1,9 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    - prefer_const_constructors
+    - prefer_single_quotes
+    - require_trailing_commas
+    - avoid_print
+    - lines_longer_than_80_chars
