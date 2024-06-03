@@ -1,16 +1,12 @@
-# estore
+# Estore
 
-A new Flutter project.
+Flutter project for practising and learning purposes.
+This app is an in-progress work, whose new features will be added in feature branches, and integrated into ```main``` branch when approved.
 
-## Getting Started
+## Vesioning
+- Flutter 3.19.6 (Channel stable)
+- Dart 3.3.4
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Additional notes
+App architecture is still in progress too, but an intial separation of concerns for data repositories, logic and UI can be noted already, to help implement all of the coming changes in future challenges. 
