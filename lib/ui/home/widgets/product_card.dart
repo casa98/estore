@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:estore/domain/models/product.dart';
-import 'package:estore/ui/home/product_details_page.dart';
+import 'package:estore/domain/models/product_model.dart';
+import 'package:estore/ui/home/details_screen.dart';
 
 class ProductCard extends StatelessWidget {
-  final Product product;
+  final ProductModel product;
 
   const ProductCard({super.key, required this.product});
   @override
@@ -17,27 +17,20 @@ class ProductCard extends StatelessWidget {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (_) {
-                return ProductDetailsPage(product: product);
+                return DetailsScreen(product: product);
               },
             ),
           );
         },
         child: Row(
           children: [
-            Expanded(
+            const Expanded(
               child: ClipRRect(
-                borderRadius: const BorderRadius.only(
+                borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(12.0),
                   bottomLeft: Radius.circular(12.0),
                 ),
-                child: Image.network(
-                  product.image,
-                  height: 100,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) {
-                    return const FlutterLogo(size: 100);
-                  },
-                ),
+                child: FlutterLogo(size: 100),
               ),
             ),
             const SizedBox(width: 16.0),

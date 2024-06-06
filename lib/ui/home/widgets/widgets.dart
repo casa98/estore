@@ -1,3 +1,2 @@
-export 'create_product_sheet.dart';
+export 'delete_confirmation_dialog.dart';
 export 'product_card.dart';
-export 'update_product_sheet.dart';

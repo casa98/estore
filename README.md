@@ -9,4 +9,8 @@ This app is an in-progress work, whose new features will be added in feature bra
 
 
 ## Additional notes
-App architecture is still in progress too, but an intial separation of concerns for data repositories, logic and UI can be noted already, to help implement all of the coming changes in future challenges. 
+Aplicación básica que permite registrar, actualizar, y eliminar productos, los cuales se mantienen únicamente en el estado.
+La aplicación permite lsitar los productos creados y ver sus detalles.
+
+Se usa ```Provider``` para el manejo del estado, el cual nos permite tener siempre actualizada la lista de productos que se muestra.
+Gracias a ```Provider``` también, separamos lo que es la UI de la lógica, la cual consiste en operaciones CRUD para el manejo de los productos.

@@ -1,23 +1,22 @@
-import 'package:estore/domain/models/models.dart';
-import 'package:estore/ui/home/widgets/delete_confirmation_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 
-import 'package:estore/domain/blocs/products/product_bloc.dart';
-import 'package:estore/domain/models/product.dart';
+import 'package:estore/domain/models/models.dart';
+import 'package:estore/providers/product_provider.dart';
 
+import 'create_update_product_screen.dart';
 import 'widgets/widgets.dart';
 
-class ProductDetailsPage extends StatefulWidget {
-  const ProductDetailsPage({super.key, required this.product});
+class DetailsScreen extends StatefulWidget {
+  const DetailsScreen({super.key, required this.product});
 
-  final Product product;
+  final ProductModel product;
 
   @override
-  State<ProductDetailsPage> createState() => _ProductDetailsPageState();
+  State<DetailsScreen> createState() => _DetailsScreenState();
 }
 
-class _ProductDetailsPageState extends State<ProductDetailsPage> {
+class _DetailsScreenState extends State<DetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +25,18 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () => _showUpdateProductBottomSheet(context),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) {
+                    return CreateUpdateProductScreen(
+                      create: false,
+                      product: widget.product,
+                    );
+                  },
+                ),
+              );
+            },
             icon: const Icon(Icons.edit),
           ),
         ],
@@ -35,14 +45,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(
-                    widget.product.image,
-                  ),
-                  fit: BoxFit.cover,
-                ),
+            child: Center(
+              child: FlutterLogo(
+                size: MediaQuery.of(context).size.width * 0.8,
               ),
             ),
           ),
@@ -81,6 +86,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                       }
                     },
                   ),
+                  const SizedBox(height: 12.0),
                 ],
               ),
             ),
@@ -90,28 +96,16 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
     );
   }
 
-  void _showUpdateProductBottomSheet(BuildContext context) async {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      builder: (context) {
-        return UpdateProductBottomSheet(product: widget.product);
-      },
-    );
-  }
-
   void _showDeleteConfirmationDialog(
     BuildContext context, {
-    required Product product,
+    required ProductModel product,
   }) async {
     showAdaptiveDialog(
       context: context,
       builder: (context) {
         return DeleteConfirmationDialog(
           onDelete: () {
-            context
-                .read<ProductCubit>()
-                .deleteProduct(productId: widget.product.id!);
+            context.read<ProductProvider>().deleteProduct(widget.product.id!);
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
                 content: Text('Product deleted successfully'),

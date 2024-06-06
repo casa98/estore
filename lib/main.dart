@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 
-import 'package:estore/data/repositories/product/local_product_repository_impl.dart';
-import 'package:estore/domain/blocs/products/product_bloc.dart';
-import 'package:estore/ui/home/products_page.dart';
+import 'package:estore/providers/product_provider.dart';
+import 'package:estore/ui/home/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,8 +13,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => ProductCubit(LocalProductRepositoryImpl()),
+    return ChangeNotifierProvider(
+      create: (_) => ProductProvider(),
       child: MaterialApp(
         title: 'Estore',
         theme: ThemeData(
@@ -23,7 +22,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           appBarTheme: const AppBarTheme(centerTitle: true),
         ),
-        home: const ProductsPage(),
+        home: const HomeScreen(),
       ),
     );
   }
