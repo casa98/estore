@@ -37,6 +37,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 ),
               );
             },
+            tooltip: 'Edit a product',
             icon: const Icon(Icons.edit),
           ),
         ],
