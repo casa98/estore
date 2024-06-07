@@ -137,6 +137,15 @@ class _CreateUpdateProductScreenState extends State<CreateUpdateProductScreen> {
     );
   }
 
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _priceController.dispose();
+    _categoryController.dispose();
+    _descriptionController.dispose();
+    super.dispose();
+  }
+
   String get title => '${widget.create ? 'Add' : 'Update'} a Product';
   String get message =>
       'Product ${widget.create ? 'created' : 'updated'} successfully';
