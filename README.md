@@ -1,16 +1,16 @@
-# estore
+# Estore
 
-A new Flutter project.
+Flutter project for practising and learning purposes.
+This app is an in-progress work, whose new features will be added in feature branches, and integrated into ```main``` branch when approved.
 
-## Getting Started
+## Vesioning
+- Flutter 3.19.6 (Channel stable)
+- Dart 3.3.4
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Additional notes
+Aplicación básica que permite registrar, actualizar, y eliminar productos, los cuales se mantienen únicamente en el estado.
+La aplicación permite lsitar los productos creados y ver sus detalles.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Se usa ```Provider``` para el manejo del estado, el cual nos permite tener siempre actualizada la lista de productos que se muestra.
+Gracias a ```Provider``` también, separamos lo que es la UI de la lógica, la cual consiste en operaciones CRUD para el manejo de los productos.
