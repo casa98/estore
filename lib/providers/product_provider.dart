@@ -1,35 +1,81 @@
-import 'package:estore/domain/models/models.dart';
-import 'package:estore/domain/models/product_model.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
-class ProductProvider extends ChangeNotifier {
-  final List<ProductModel> _products = [];
+import '../models/models.dart';
+import '../repositories/product_repository.dart';
+
+class ProductProvider with ChangeNotifier {
+  final ProductRepository _productRepository;
+
+  ProductProvider(this._productRepository);
+
+  List<ProductModel> _products = [];
+  List<CategoryModel> _categories = [];
+  ProductModel? _productDetail;
+  String? _errorMessage;
+  bool _isLoading = false;
+
   List<ProductModel> get products => _products;
+  List<CategoryModel> get categories => _categories;
+  ProductModel? get productDetail => _productDetail;
+  String? get errorMessage => _errorMessage;
+  bool get isLoading => _isLoading;
 
-  void onButtonTapped({required bool create, required ProductModel product}) {
-    if (create) {
-      createProduct(product);
-    } else {
-      updateProduct(product);
-    }
-  }
+  Future<void> getProducts() async {
+    _isLoading = true;
+    notifyListeners();
+    final result = await _productRepository.getProducts();
 
-  void createProduct(ProductModel product) {
-    _products.add(product);
+    result.fold(
+      (error) {
+        _errorMessage = error;
+      },
+      (products) {
+        _products = products;
+        _errorMessage = null;
+      },
+    );
+
+    _isLoading = false;
     notifyListeners();
   }
 
-  void updateProduct(ProductModel updatedProduct) {
-    int index =
-        _products.indexWhere((product) => product.id == updatedProduct.id);
-    if (index != -1) {
-      _products[index] = updatedProduct;
-      notifyListeners();
-    }
+  Future<void> getCategories() async {
+    _isLoading = true;
+    notifyListeners();
+
+    final result = await _productRepository.getCategories();
+
+    result.fold(
+      (error) {
+        _errorMessage = error;
+      },
+      (categories) {
+        _categories = categories;
+        _errorMessage = null;
+      },
+    );
+
+    _isLoading = false;
+    notifyListeners();
   }
 
-  void deleteProduct(int productId) {
-    _products.removeWhere((product) => product.id == productId);
+  Future<void> getProductById(int id) async {
+    _isLoading = true;
+    notifyListeners();
+
+    final result = await _productRepository.getProductById(id);
+
+    result.fold(
+      (error) {
+        _errorMessage = error;
+      },
+      (product) {
+        _productDetail = product;
+        _errorMessage = null;
+      },
+    );
+
+    _isLoading = false;
     notifyListeners();
   }
 }
