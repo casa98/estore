@@ -31,7 +31,3 @@ Each method performs an HTTP request and converts the JSON response into the cor
 
 ## Error Handling with Either
 HTTP Requests error handling in this project is managed using the `dartz` library, specifically the `Either` type. This type is used to represent a value that can be either a success (`Right`) or a failure (`Left`). This approach allows that API errors are handled properly in a more elegant way. 
-
-
-### Additional notes
-Another solution to manage errors without using a package, could've been using `Success` and `Failure` classes, which would extend a `sealed class` and allow us to manage errors similarly.
