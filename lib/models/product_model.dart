@@ -25,4 +25,22 @@ class ProductModel {
       image: json['image'],
     );
   }
+
+  String _truncateDescription(String description, {int maxLength = 50}) {
+    return description.length <= maxLength
+        ? description
+        : '${description.substring(0, maxLength)}...';
+  }
+
+  @override
+  String toString() {
+    return '''
+Product ID: $id
+Title: $title
+Price: \$$price
+Category: $category
+Description: ${_truncateDescription(description)}
+----------------------
+''';
+  }
 }

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 
 import '../models/models.dart';
@@ -31,6 +33,10 @@ class ProductProvider with ChangeNotifier {
       },
       (products) {
         _products = products;
+        print('${products.length} Products fetched:\n');
+        for (var product in products) {
+          print(product.toString());
+        }
         _errorMessage = null;
       },
     );
@@ -51,6 +57,10 @@ class ProductProvider with ChangeNotifier {
       },
       (categories) {
         _categories = categories;
+        print('${categories.length} Categories fetched:\n');
+        for (var category in categories) {
+          print(category.name);
+        }
         _errorMessage = null;
       },
     );
