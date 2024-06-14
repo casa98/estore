@@ -13,4 +13,4 @@ Aplicación básica que permite registrar, actualizar, y eliminar productos, los
 La aplicación permite lsitar los productos creados y ver sus detalles.
 
 Se usa ```Provider``` para el manejo del estado, el cual nos permite tener siempre actualizada la lista de productos que se muestra.
-Gracias a ```Provider``` también, separamos lo que es la UI de la lógica, la cual consiste en operaciones CRUD para el manejo de los productos.
+Gracias a ```Provider``` también, separamos lo que es la UI de la lógica, la cual consiste en operaciones CRUD para el manejo de los productos
