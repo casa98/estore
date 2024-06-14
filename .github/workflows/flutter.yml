@@ -1,0 +1,38 @@
+name: Flutter CI/CD
+
+on:
+  push:
+    branches:
+      - main  # Trigger on push to main branch
+  pull_request:
+    branches:
+      - main  # Trigger on pull requests to main branch
+
+jobs:
+  build:
+    runs-on: macOS-latest  # Use macOS environment for building iOS and macOS apps
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2  # Checkout the repository to the runner
+
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v2  # Use Flutter GitHub Action
+      with:
+        channel: stable
+        flutter-version: '3.19.x'  # Specify Flutter version
+
+    - name: Install Dependencies
+      run: flutter pub get  # Install dependencies
+
+    - name: Analyze and Test
+      run: |
+        flutter analyze
+        flutter test  # Run tests
+
+    - name: Build APK
+      run: flutter build apk  # Build APK for Android
+
+    - name: Build iOS App
+      if: runner.os == 'macOS'  # Only build iOS on macOS runner
+      run: flutter build ios --release --no-codesign  # Build iOS app (adjust flags as needed)
