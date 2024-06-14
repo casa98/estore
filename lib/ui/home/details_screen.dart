@@ -79,12 +79,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     icon: const Icon(Icons.delete_forever_rounded),
                     label: const Text('Remove Product'),
                     onPressed: () {
-                      if (widget.product.id != null) {
-                        _showDeleteConfirmationDialog(
-                          context,
-                          product: widget.product,
-                        );
-                      }
+                      _showDeleteConfirmationDialog(
+                        context,
+                        product: widget.product,
+                      );
                     },
                   ),
                   const SizedBox(height: 12.0),
@@ -106,7 +104,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
       builder: (context) {
         return DeleteConfirmationDialog(
           onDelete: () {
-            context.read<ProductProvider>().deleteProduct(widget.product.id!);
+            context.read<ProductProvider>().deleteProduct(widget.product.id);
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
                 content: Text('Product deleted successfully'),
