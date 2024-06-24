@@ -1,4 +1,4 @@
-import 'package:estore/domain/models/models.dart';
+import 'package:estore/models/models.dart';
 import 'package:estore/providers/product_provider.dart';
 import 'package:flutter_test/flutter_test.dart';
 

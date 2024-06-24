@@ -1,6 +1,6 @@
 import 'package:estore/providers/product_provider.dart';
-import 'package:estore/ui/home/home_screen.dart';
-import 'package:estore/ui/home/widgets/widgets.dart';
+import 'package:estore/screens/home_screen.dart';
+import 'package:estore/screens/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';

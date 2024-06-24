@@ -1,5 +1,5 @@
 import 'package:estore/providers/product_provider.dart';
-import 'package:estore/ui/home/create_update_product_screen.dart';
+import 'package:estore/screens/create_update_product_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
